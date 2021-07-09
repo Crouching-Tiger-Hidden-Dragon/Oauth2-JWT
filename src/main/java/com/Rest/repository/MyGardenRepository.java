@@ -13,8 +13,8 @@ import java.util.List;
 public interface MyGardenRepository extends JpaRepository<MyGarden, Long> {
 
     @Modifying
-    @Query("delete from MyGarden g where g.userId= ?1 and g.plantId=?2")
-    void deletePlant(long userId, long plantId);
+    @Query("delete from MyGarden g where g.id=?1")
+    void deletePlant(long gardenId);
 
     @Modifying
     @Query(value = "insert into mygarden (userid, plantid) VALUES (?1, ?2)", nativeQuery = true)

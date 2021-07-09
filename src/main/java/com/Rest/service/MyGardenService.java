@@ -16,8 +16,8 @@ public class MyGardenService implements IMyGardenService {
     private MyGardenRepository myGardenRepository;
 
     @Override
-    public void deletePlant(long userId, long plantId) {
-        myGardenRepository.deletePlant(userId, plantId);
+    public void deletePlant(long gardenId) {
+        myGardenRepository.deletePlant(gardenId);
     }
 
     @Override

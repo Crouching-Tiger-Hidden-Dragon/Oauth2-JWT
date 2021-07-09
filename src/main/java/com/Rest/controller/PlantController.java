@@ -48,7 +48,7 @@ public class PlantController {
 //                .orElseThrow(() -> new ResourceNotFoundException("Plant not found on :: "+ id));
 
         String userName = (String) request.getAttribute("userName");
-        gardenService.deletePlant(getUserId(userName), id);
+        gardenService.deletePlant(id);
 
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
