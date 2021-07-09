@@ -29,6 +29,7 @@ public interface MyGardenRepository extends JpaRepository<MyGarden, Long> {
     public interface MyGardenDetail{
         long getUserId();
         long getPlantId();
+        long getGardenId();
         String getName();
         String getDescription();
         String getImage();
