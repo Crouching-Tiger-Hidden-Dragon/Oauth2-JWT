@@ -78,9 +78,7 @@ public class PlantController {
     private Map<String, Boolean> addWater(@PathVariable("id") long id, HttpServletRequest request)
     {
         String userName = (String) request.getAttribute("userName");
-        MyGarden g = gardenService.findByPlantId(getUserId(userName), id);
-        System.out.println("garden_id:"+g.getId());
-        waterService.addWater(g.getId());
+        waterService.addWater(id);
 
         Map<String, Boolean> response = new HashMap<>();
         response.put("added", Boolean.TRUE);
