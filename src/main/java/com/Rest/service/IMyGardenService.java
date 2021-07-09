@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface IMyGardenService {
     void deletePlant(long userId, long plantId);
-    MyGarden add(MyGarden myGarden);
+    void add(long userId, long plantId);
     MyGarden findByPlantId(long plantId);
 }

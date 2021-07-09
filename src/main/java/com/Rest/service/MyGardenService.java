@@ -19,10 +19,9 @@ public class MyGardenService implements IMyGardenService {
     }
 
     @Override
-    public MyGarden add(MyGarden g){
-        return myGardenRepository.save(g);
+    public void add(long userId, long plantId){
+        myGardenRepository.addPant(userId, plantId);
     }
-
 
     @Override
     public MyGarden findByPlantId(long plantId) {

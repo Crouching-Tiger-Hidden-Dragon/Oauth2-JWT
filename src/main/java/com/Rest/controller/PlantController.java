@@ -49,6 +49,19 @@ public class PlantController {
         return response;
     }
 
+    @PostMapping("/addPlant/{id}")
+    private Map<String, Boolean> addPlant(@PathVariable("id") long id, HttpServletRequest request)
+    {
+        String userName = (String) request.getAttribute("userName");
+        System.out.println("Username:"+userName);
+        System.out.println("user id:"+getUserId(userName));
+        gardenService.add(getUserId(userName), id);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("added", Boolean.TRUE);
+        return response;
+    }
+
     private long getUserId(String userName){
         return userService.findByUserName(userName);
     }
