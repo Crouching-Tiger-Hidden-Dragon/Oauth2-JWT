@@ -31,7 +31,7 @@ public class MyGardenService implements IMyGardenService {
     }
 
     @Override
-    public List<MyGarden> getMyGarden(long userId) {
+    public List<MyGardenRepository.MyGardenDetail> getMyGarden(long userId) {
         return myGardenRepository.getMyGarden(userId);
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.Rest.repository.MyGardenRepository;
 import com.Rest.service.IMyGardenService;
 import com.Rest.service.IPlantService;
 import com.Rest.service.IUserService;
@@ -55,7 +56,7 @@ public class PlantController {
     }
 
     @GetMapping("/getMyGarden")
-    private List<MyGarden> getMyGarden(HttpServletRequest request)
+    private List<MyGardenRepository.MyGardenDetail> getMyGarden(HttpServletRequest request)
     {
         String userName = (String) request.getAttribute("userName");
         return gardenService.getMyGarden(getUserId(userName));
