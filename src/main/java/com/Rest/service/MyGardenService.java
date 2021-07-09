@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class MyGardenService implements IMyGardenService {
@@ -26,5 +28,10 @@ public class MyGardenService implements IMyGardenService {
     @Override
     public MyGarden findByPlantId(long plantId) {
         return myGardenRepository.findByPlantId(plantId);
+    }
+
+    @Override
+    public List<MyGarden> getMyGarden(long userId) {
+        return myGardenRepository.getMyGarden(userId);
     }
 }

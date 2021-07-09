@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin
 public class PlantController {
     @Autowired
     private IPlantService plantService;
@@ -49,12 +50,18 @@ public class PlantController {
         return response;
     }
 
+    @GetMapping("/getMyGarden")
+    private List<MyGarden> getMyGarden(HttpServletRequest request)
+    {
+        String userName = (String) request.getAttribute("userName");
+        return gardenService.getMyGarden(getUserId(userName));
+
+    }
+
     @PostMapping("/addPlant/{id}")
     private Map<String, Boolean> addPlant(@PathVariable("id") long id, HttpServletRequest request)
     {
         String userName = (String) request.getAttribute("userName");
-        System.out.println("Username:"+userName);
-        System.out.println("user id:"+getUserId(userName));
         gardenService.add(getUserId(userName), id);
 
         Map<String, Boolean> response = new HashMap<>();

@@ -10,4 +10,5 @@ public interface IMyGardenService {
     void deletePlant(long userId, long plantId);
     void add(long userId, long plantId);
     MyGarden findByPlantId(long plantId);
+    List<MyGarden> getMyGarden(long userid);
 }

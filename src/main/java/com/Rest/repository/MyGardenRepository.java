@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MyGardenRepository extends JpaRepository<MyGarden, Long> {
 
@@ -20,4 +22,12 @@ public interface MyGardenRepository extends JpaRepository<MyGarden, Long> {
     @Modifying
     @Query("select g from MyGarden g where g.plantId = ?1")
     MyGarden findByPlantId(long plantId);
+
+    @Modifying
+    @Query(value = "SELECT g.userid, p.id, p.name, p.description, p.image,h.watering_date\n" +
+            "from mygarden g \n" +
+            "inner join plant p on g.plantid = p.id\n" +
+            "left join (select garden_id, max(watering_date) watering_date from watering_history group by garden_id) h on h.garden_id=g.id\n" +
+            "where g.userid = ?1", nativeQuery = true)
+    List<MyGarden> getMyGarden(long userName);
 }
