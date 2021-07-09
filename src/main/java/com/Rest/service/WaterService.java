@@ -1,21 +1,19 @@
 package com.Rest.service;
 
-import com.Rest.repository.UserRepository;
+import com.Rest.repository.WaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @Transactional
-public class UserService implements IUserService {
+public class WaterService implements IWaterService {
 
     @Autowired
-    private UserRepository userRepository;
+    private WaterRepository waterRepository;
 
     @Override
-    public long findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+    public void addWater(long gardenId) {
+        waterRepository.addWater(gardenId);
     }
-
 }

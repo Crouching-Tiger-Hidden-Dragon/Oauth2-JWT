@@ -12,6 +12,7 @@ import java.util.Optional;
 import com.Rest.service.IMyGardenService;
 import com.Rest.service.IPlantService;
 import com.Rest.service.IUserService;
+import com.Rest.service.IWaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,9 @@ public class PlantController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IWaterService waterService;
 
     @GetMapping("/getAllPlants")
     private List<Plant> getAllPlants()
@@ -63,6 +67,19 @@ public class PlantController {
     {
         String userName = (String) request.getAttribute("userName");
         gardenService.add(getUserId(userName), id);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("added", Boolean.TRUE);
+        return response;
+    }
+
+    @PostMapping("/addWater/{id}")
+    private Map<String, Boolean> addWater(@PathVariable("id") long id, HttpServletRequest request)
+    {
+        String userName = (String) request.getAttribute("userName");
+        MyGarden g = gardenService.findByPlantId(getUserId(userName), id);
+        System.out.println("garden_id:"+g.getId());
+        waterService.addWater(g.getId());
 
         Map<String, Boolean> response = new HashMap<>();
         response.put("added", Boolean.TRUE);

@@ -26,8 +26,8 @@ public class MyGardenService implements IMyGardenService {
     }
 
     @Override
-    public MyGarden findByPlantId(long plantId) {
-        return myGardenRepository.findByPlantId(plantId);
+    public MyGarden findByPlantId(long userId, long plantId) {
+        return myGardenRepository.findByPlantId(userId, plantId);
     }
 
     @Override
